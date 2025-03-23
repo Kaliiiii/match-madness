@@ -1,11 +1,20 @@
 :root {
-  --primary-color: #6b7280;
-  --background-color: #f3f4f6;
-  --text-color: #374151;
-  --accent-color: #60a5fa;
+  --primary-color: #000000;
+  --background-color: #d1f9f0;
+  --text-color: #1f2021;
+  --accent-color: #2b9d9c;
   --border-radius: 6px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+
+@font-face { 
+  font-family: 'ButterflyFont'; 
+  src: 
+      url('./fonts/TheBillionButterflyPersonalItalic-9Y1v5.otf')  
+      format('opentype'); 
+  font-weight: normal; 
+  font-style: normal; 
+} 
 
 body {
   display: flex;
@@ -33,13 +42,16 @@ h3 {
 
 h1 {
   font-size: 1.8rem;
+  font-family: 'ButterflyFont', sans-serif; 
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
 h2 {
   font-size: 1.3rem;
+  font-family: 'ButterflyFont', sans-serif;
   font-weight: 600;
+  text-align: center;
 }
 
 h3 {
@@ -53,41 +65,45 @@ h3 {
   font-weight: 600;
 }
 
-/* New button container */
-.button-container {
+.dropzone {
+  height: 35px;
+  width: 150px;
+  position: relative;
+  border: 3px solid #ffc6c8; 
   display: flex;
-  gap: 0.5rem;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #fff2ec;
+  border-radius: 5px;
+  transition: transform 0.5s;
 }
-
-button {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: var(--border-radius);
-  background-color: var(--accent-color);
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-  box-shadow: var(--shadow);
+.dropzone.dragover {
+  transform: scale(0.9);
+}
+.vertical-center {
   margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+#file-dropzone {
+  width: 400px;
+  height: 200px;
 }
 
-button:active {
-  transform: translateY(0);
+.column {
+  float: left;
+  width: 25%;
 }
 
-#btn-decrease {
-  background-color: var(--primary-color);
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 pre {

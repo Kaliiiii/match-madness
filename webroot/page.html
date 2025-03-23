@@ -6,12 +6,11 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta charset="UTF-8" />
-    <title>Web View Example</title>
+    <title>Match Madness</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>This is your page.html</h1>
-
+    <h3>Current counter is at: <span id="counter">0</span></h3>
     <div class="container">
       <!-- <img src="assets/love-island-usa-s6-leah.jpg" class="dropzone box">
       <div draggable="true" class="dropzone box" data-item="A">A</div>
@@ -60,16 +59,37 @@
         <img src="assets/love-island-usa-season-6-liv.jpg">
       </div>
     </div>
-
-
-    <h3>Your username is <span id="username">Guest</span></h3>
-    <h3>Current counter is at: <span id="counter">0</span></h3>
-    <div class="button-container">
-      <button id="btn-increase">Increase Counter ⬆️</button>
-      <button id="btn-decrease">Decrease Counter ⬇️</button>
+    <div class="row">
+      <div class="column">
+        <h2>Season Premier</h2>
+        <div class="vertical-center">
+          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+          <div id="dropzoneB" class="dropzone">Dropzone B</div>
+          <div id="dropzoneC" class="dropzone">Dropzone C</div>
+          <div id="dropzoneD" class="dropzone">Dropzone C</div>
+        </div>
+      </div>
+      <div class="column">
+        <h2>Casa Amour</h2>
+        <div class="vertical-center">
+          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+          <div id="dropzoneB" class="dropzone">Dropzone B</div>
+          <div id="dropzoneC" class="dropzone">Dropzone C</div>
+        </div>
+      </div>
+      <div class="column">
+        <h2>Heart Beat Challenge</h2>
+        <div class="vertical-center">
+          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+          <div id="dropzoneB" class="dropzone">Dropzone B</div>
+        </div>
+      </div>
+      <div class="column">
+        <h2>Finally</h2>
+        <div class="vertical-center">
+          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+        </div>
+      </div>
     </div>
-    <h3>Last message from Devvit blocks:</h3>
-    <pre id="messageOutput"></pre>
-    <script type="application/javascript" src="script.js"></script>
   </body>
 </html>

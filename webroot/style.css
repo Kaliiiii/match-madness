@@ -82,11 +82,9 @@ h3 {
   transform: scale(0.9);
 }
 .vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
 }
 
 #file-dropzone {
@@ -106,6 +104,10 @@ h3 {
   clear: both;
 }
 
+.button-save {
+  background-color: var(--accent-color);
+  border-radius: 12px;
+}
 pre {
   background-color: white;
   padding: 0.75rem;

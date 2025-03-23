@@ -82,11 +82,9 @@ h3 {
   transform: scale(0.9);
 }
 .vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
 }
 
 #file-dropzone {
@@ -119,10 +117,15 @@ pre {
 }
 
 /*Contestants*/
-.container {
+.flex-container {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-direction:row; */
+  /* flex-wrap: wrap; */
+  flex-flow: row wrap;
   gap: 15px;
+}
+.contestant{
+  width: 12%;
 }
 
 /*Contestant Container*/
@@ -171,6 +174,7 @@ pre {
 .draggable.can-drop {
   background-color: #67D967;
 }
+
 
 img {
   width:100%;

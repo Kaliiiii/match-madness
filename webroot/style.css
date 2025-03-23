@@ -118,6 +118,66 @@ pre {
   margin: 0;
 }
 
+/*Contestants*/
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/*Contestant Container*/
+.box {
+  width: 100px;
+  height: 100px;
+  cursor: move;
+  user-select: none;
+}
+
+.draggable {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  border: 2px solid #1576C1;
+  background-color: #94DBFD;
+  border-radius: 10px;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 50px;
+  touch-action: none;
+}
+
+.interact.dropzone {
+  width: 350px;
+  height: 350px;
+  transition: background-color 0.5s;
+}
+.drop-target {
+  background-color: #BCF8B9;
+}
+.draggable {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  border: 2px solid #1576C1;
+  background-color: #94DBFD;
+  border-radius: 10px;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 50px;
+  touch-action: none;
+}
+.draggable.can-drop {
+  background-color: #67D967;
+}
+
+img {
+  width:100%;
+  border-radius: 10%;
+  /* height:600px; */
+}
+
 @media (max-width: 640px) {
   body {
     padding: 0.75rem;

@@ -69,7 +69,7 @@ Devvit.addCustomPostType({
       <vstack grow padding="small">
         <vstack grow alignment="middle center">
           <text size="xlarge" weight="bold">
-            Example App
+            Modify Your Bracket
           </text>
           <spacer />
           <vstack alignment="start middle">

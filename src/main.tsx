@@ -1,55 +1,96 @@
-// Learn more at developers.reddit.com/docs
-import { Devvit, useState } from '@devvit/public-api';
+import './createPost.js';
+
+import { Devvit, useState, useWebView } from '@devvit/public-api';
+
+import type { DevvitMessage, WebViewMessage } from './message.js';
 
 Devvit.configure({
   redditAPI: true,
+  redis: true,
 });
 
-// Add a menu item to the subreddit menu for instantiating the new experience post
-Devvit.addMenuItem({
-  label: 'Add my post',
-  location: 'subreddit',
-  forUserType: 'moderator',
-  onPress: async (_event, context) => {
-    const { reddit, ui } = context;
-    ui.showToast("Submitting your post - upon completion you'll navigate there.");
-
-    const subreddit = await reddit.getCurrentSubreddit();
-    const post = await reddit.submitPost({
-      title: 'My devvit post',
-      subredditName: subreddit.name,
-      // The preview appears while the post loads
-      preview: (
-        <vstack height="100%" width="100%" alignment="middle center">
-          <text size="large">Loading ...</text>
-        </vstack>
-      ),
-    });
-    ui.navigateTo(post);
-  },
-});
-
-// Add a post type definition
+// Add a custom post type to Devvit
 Devvit.addCustomPostType({
-  name: 'Experience Post',
-  height: 'regular',
-  render: (_context) => {
-    const [counter, setCounter] = useState(0);
+  name: 'Web View Example',
+  height: 'tall',
+  render: (context) => {
+    // Load username with `useAsync` hook
+    const [username] = useState(async () => {
+      return (await context.reddit.getCurrentUsername()) ?? 'anon';
+    });
 
+    // Load latest counter from redis with `useAsync` hook
+    const [counter, setCounter] = useState(async () => {
+      const redisCount = await context.redis.get(`counter_${context.postId}`);
+      return Number(redisCount ?? 0);
+    });
+
+    const webView = useWebView<WebViewMessage, DevvitMessage>({
+      // URL of your web view content
+      url: 'page.html',
+
+      // Handle messages sent from the web view
+      async onMessage(message, webView) {
+        switch (message.type) {
+          case 'webViewReady':
+            webView.postMessage({
+              type: 'initialData',
+              data: {
+                username: username,
+                currentCounter: counter,
+              },
+            });
+            break;
+          case 'setCounter':
+            await context.redis.set(
+              `counter_${context.postId}`,
+              message.data.newCounter.toString()
+            );
+            setCounter(message.data.newCounter);
+
+            webView.postMessage({
+              type: 'updateCounter',
+              data: {
+                currentCounter: message.data.newCounter,
+              },
+            });
+            break;
+          default:
+            throw new Error(`Unknown message type: ${message satisfies never}`);
+        }
+      },
+      onUnmount() {
+        context.ui.showToast('Web view closed!');
+      },
+    });
+
+    // Render the custom post type
     return (
-      <vstack height="100%" width="100%" gap="medium" alignment="center middle">
-        <image
-          url="logo.png"
-          description="logo"
-          imageHeight={256}
-          imageWidth={256}
-          height="48px"
-          width="48px"
-        />
-        <text size="large">{`Click counter: ${counter}`}</text>
-        <button appearance="primary" onPress={() => setCounter((counter) => counter + 1)}>
-          Click me!
-        </button>
+      <vstack grow padding="small">
+        <vstack grow alignment="middle center">
+          <text size="xlarge" weight="bold">
+            Example App
+          </text>
+          <spacer />
+          <vstack alignment="start middle">
+            <hstack>
+              <text size="medium">Username:</text>
+              <text size="medium" weight="bold">
+                {' '}
+                {username ?? ''}
+              </text>
+            </hstack>
+            <hstack>
+              <text size="medium">Current counter:</text>
+              <text size="medium" weight="bold">
+                {' '}
+                {counter ?? ''}
+              </text>
+            </hstack>
+          </vstack>
+          <spacer />
+          <button onPress={() => webView.mount()}>Launch App</button>
+        </vstack>
       </vstack>
     );
   },

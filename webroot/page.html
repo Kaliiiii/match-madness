@@ -9,45 +9,98 @@
     <title>Match Madness</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
   <body>
-    <h1>Match Madness Baby</h1>
-    <h3>Create your bredictions for who will be around for the first half, finals, and the winner</h3>
+
     <div class="row">
       <div class="column">
         <h2>Season Premier</h2>
         <div class="vertical-center">
-          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+          <!-- <div id="dropzoneA" class="dropzone">Dropzone A</div>
           <div id="dropzoneB" class="dropzone">Dropzone B</div>
           <div id="dropzoneC" class="dropzone">Dropzone C</div>
-          <div id="dropzoneD" class="dropzone">Dropzone C</div>
+          <div id="dropzoneD" class="dropzone">Dropzone C</div> -->
+          <div id="seasonpremiere" class="interact dropzone"></div>
+          <div id="seasonpremiere" class="interact dropzone"></div>
+          <div id="seasonpremiere" class="interact dropzone"></div>
+          <div id="seasonpremiere" class="interact dropzone"></div>
         </div>
       </div>
       <div class="column">
         <h2>Casa Amour</h2>
         <div class="vertical-center">
-          <div id="dropzoneA" class="dropzone">Dropzone A</div>
-          <div id="dropzoneB" class="dropzone">Dropzone B</div>
-          <div id="dropzoneC" class="dropzone">Dropzone C</div>
+          <div id="casaamour" class="interact dropzone"></div>
+          <div id="casaamour" class="interact dropzone"></div>
+          <div id="casaamour" class="interact dropzone"></div>
         </div>
       </div>
       <div class="column">
         <h2>HB Challenge</h2>
         <div class="vertical-center">
-          <div id="dropzoneA" class="dropzone">Dropzone A</div>
-          <div id="dropzoneB" class="dropzone">Dropzone B</div>
+          <div id="hb" class="interact dropzone"></div>
+          <div id="hb" class="interact dropzone"></div>
         </div>
       </div>
       <div class="column">
         <h2>Finally</h2>
         <div class="vertical-center">
-          <div id="dropzoneA" class="dropzone">Dropzone A</div>
+          <div id="finally" class="interact dropzone"></div>
         </div>
       </div>
     </div>
     
+
+    <div class="flex-container">
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-leah.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-kenny.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-miguel.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-aaron.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-hannah.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-jana.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-kaylor.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-kendall.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-kordell.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-robert.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-s6-serena.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-season-6-connor.jpg">
+      </div>
+      <div class="draggable">
+        <img src="assets/love-island-usa-season-6-hakeem.jpg">
+      </div>
+      <!-- <div class="draggable itemA" data-item="A"> -->
+      <div class="draggable">
+        <img src="assets/love-island-usa-season-6-liv.jpg">
+      </div>
+    </div>
+    
+
     <!-- <div class="row"> -->
-      <div class="flex-container">
-        <div draggable="true" class="contestant">
+      <!-- <div class="flex-container">
+        <div draggable="true"class="contestant">
           <img src="assets/love-island-usa-s6-leah.jpg">
         </div>
         <div draggable="true" class="contestant">
@@ -89,7 +142,10 @@
         <div draggable="true" class="contestant">
           <img src="assets/love-island-usa-season-6-liv.jpg">
         </div>
-      </div>
+      </div> -->
     <!-- </div> -->
+
+
+
   </body>
 </html>

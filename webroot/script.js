@@ -85,7 +85,22 @@ function postWebViewMessage(msg) {
  * Drag and drop functions
 */
 
+function updateDropzoneCount(dropzoneId) {
+  const dropzone = document.getElementById(dropzoneId);
+  if (dropzone) {
+    const count = dropzone.querySelectorAll('.draggable').length;
+    let counterLabel = dropzone.querySelector('.dropzone-counter');
+    
+    if (!counterLabel) {
+      counterLabel = document.createElement('span');
+      counterLabel.classList.add('dropzone-counter');
+      dropzone.appendChild(counterLabel);
+    }
 
+    counterLabel.innerText = `Count: ${count}`;
+    console.log(`${dropzoneId} count: ${count}`);
+  }
+}
 
 function dragMoveListener(event) {
   var target = event.target;
@@ -107,100 +122,31 @@ function onDragEnter(event) {
 function onDragLeave(event) {
   event.target.classList.remove("drop-target");
   event.relatedTarget.classList.remove("can-drop");
+  updateDropzoneCount(event.target.id);
 
-  // let draggableElement = event.relatedTarget;
-  // let dropzoneElement = event.target;
-
-  // // Remove styling when draggable leaves
-  // // dropzoneElement.classList.remove("drop-target");
-  // // draggableElement.classList.remove("can-drop");
-
-  // // If draggable was inside dropzone, move it back to the original flex container
-  // if (!dropzoneElement.contains(draggableElement)) {
-  //   let flexContainer = document.querySelector(".flex-container"); // Adjust if needed
-  //   if (flexContainer) {
-  //     flexContainer.appendChild(draggableElement);
-  //   }
-
-  //   // Reset position
-  //   draggableElement.style.position = "relative";
-  //   draggableElement.style.left = "0px";
-  //   draggableElement.style.top = "0px";
-  //   draggableElement.style.transform = "none";
-  // }
 }
 
 function onDrop(event) {
   event.target.classList.remove("drop-target");
-  // let draggableElement = event.relatedTarget;
-  // let dropzoneElement = event.target;
-
-  // if (dropzoneElement.children.length >= 2) {
-  //   dropzoneElement.removeChild(dropzoneElement.firstElementChild);
-  // }
-
-  // Move the draggable inside the dropzone
-  // dropzoneElement.appendChild(draggableElement);
-
-  // Reset draggable position inside dropzone
-  // draggableElement.style.position = 'relative';
-  // draggableElement.style.left = '0px';
-  // draggableElement.style.top = '0px';
-  // draggableElement.style.transform = 'none';
-
-  // Apply flexbox to avoid overlap
-  // dropzoneElement.style.display = "flex";
-  // dropzoneElement.style.alignItems = "center";
-  // dropzoneElement.style.justifyContent = "center";
-  // dropzoneElement.style.flexWrap = "wrap";
-  // dropzoneElement.style.gap = "10px"; // Ensures spacing
+  updateDropzoneCount(event.target.id);
+  // console.log("dropped");
+  // count += 1;
+  // console.log(count);
 }
 
 document.addEventListener("DOMContentLoaded", event => {
   window.dragMoveListener = dragMoveListener;
 
-  interact("#seasonpremiere").dropzone({
-    // accept: ".draggable",
-    // overlap: 0.75,
-    // ondragenter: onDragEnter,
-    // ondragleave: onDragLeave,
-    // ondrop: onDrop
-    accept: '.draggable',
-    overlap: 0.75,
-    // checker: function (
-    //   dragEvent, event, dropped, dropzone, dropzoneElement, draggable, draggableElement
-    // ) {
-    //     // Allow drop only if max limit (2) is not reached
-    //     return dropped && dropzoneElement.children.length < 2;
-    // },
-    ondragenter: onDragEnter,
-    ondragleave: onDragLeave,
-    ondrop: onDrop
-});
+  document.querySelectorAll(".interact.dropzone").forEach(dropzone => {
+    interact(`#${dropzone.id}`).dropzone({
+      accept: '.draggable',
+      overlap: 0.75,
+      ondragenter: onDragEnter,
+      ondragleave: onDragLeave,
+      ondrop: onDrop
+    });
+  });
 
-interact("#casaamour").dropzone({
-  accept: '.draggable',
-  overlap: 0.75,
-  ondragenter: onDragEnter,
-  ondragleave: onDragLeave,
-  ondrop: onDrop
-});
-
-interact("#hb").dropzone({
-  accept: '.draggable',
-  overlap: 0.75,
-  ondragenter: onDragEnter,
-  ondragleave: onDragLeave,
-  ondrop: onDrop
-});
-
-interact("#finally").dropzone({
-  accept: '.draggable',
-  overlap: 0.75,
-  ondragenter: onDragEnter,
-  ondragleave: onDragLeave,
-  ondrop: onDrop
-});
 
   interact(".draggable").draggable({
       inertia: true,
